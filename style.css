@@ -1,6 +1,7 @@
 /* ============================================
-   AChERLABs Website - Stylesheet v2.0 (MODERN)
+   AChERLABs Website - Stylesheet v2.1 (FINAL)
    THEME: SOFT LIGHT (Premium & Clean)
+   - Duplicates removed, syntax errors fixed
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
@@ -18,10 +19,11 @@
     font-display: swap;
 }
 
+/* FIX: weight 'normal' — file khud Light hai, mismatch hat gaya */
 @font-face {
     font-family: 'Myriad Pro Light';
     src: url('fonts/MyriadPro-Light.otf') format('opentype');
-    font-weight: 300;
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
@@ -41,7 +43,7 @@
     --text-light: #94a3b8;
     --border: #e2e8f0;
 
-    /* Gradients */
+    /* Gradients (Top → Bottom) */
     --grad-primary: linear-gradient(to bottom, #770A09 0%, #B02A28 60%, #D04038 100%);
     --grad-text: linear-gradient(to bottom, #770A09 0%, #C13A31 60%, #E05248 100%);
 
@@ -61,6 +63,9 @@
     /* Motion */
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
     --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Section Spacing (Section 10 use karta hai) */
+    --section-space: 64px;
 }
 
 * {
@@ -88,13 +93,11 @@ p {
 
 .italic-text { font-style: italic; }
 
-/* Modern Selection Color */
 ::selection {
     background: var(--primary);
     color: #fff;
 }
 
-/* Modern Scrollbar */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
@@ -118,7 +121,17 @@ p {
    2. REUSABLE COMPONENTS
    ============================================ */
 
-/* A. Navigation (Glassmorphism) */
+/* A. Gradient Text Utility (FIX: 6 duplicate rules ek mein merge) */
+span.gradient,
+.gradient-text,
+.cv-red {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* B. Navigation (Glassmorphism) */
 nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -221,7 +234,7 @@ nav.scrolled {
     stroke: var(--text);
 }
 
-/* B. Buttons (Gradient + Shine Effect) */
+/* C. Buttons (Gradient + Shine Effect) */
 .btn-primary {
     position: relative;
     overflow: hidden;
@@ -239,7 +252,6 @@ nav.scrolled {
     display: inline-block;
 }
 
-/* Shine Sweep Effect */
 .btn-primary::after {
     content: '';
     position: absolute;
@@ -283,7 +295,7 @@ nav.scrolled {
     box-shadow: var(--shadow-sm);
 }
 
-/* C. Footer (Modern Dark) */
+/* D. Footer (Modern Dark) */
 footer {
     position: relative;
     background: #050505;
@@ -291,7 +303,6 @@ footer {
     color: #777;
 }
 
-/* Top Gradient Line */
 footer::before {
     content: '';
     position: absolute;
@@ -407,7 +418,7 @@ footer::before {
     color: #fff;
 }
 
-/* D. Modal (Animated - Modern) */
+/* E. Modal (Animated - Modern) */
 .modal {
     display: none;
     position: fixed;
@@ -546,7 +557,6 @@ footer::before {
     to { transform: scale(1.08); }
 }
 
-/* Overlay */
 .hero-bg-slider .slide::before {
     content: '';
     position: absolute;
@@ -555,7 +565,7 @@ footer::before {
     z-index: 1;
 }
 
-/* Slide Text (Slide-up Animation ke saath) */
+/* Slide Text (Slide-up Animation) */
 .slide-text {
     position: absolute;
     bottom: 50px;
@@ -655,16 +665,13 @@ footer::before {
     font-size: 0.8em;
 }
 
+/* FIX: gradient properties utility (Section 2A) se aati hain — sirf size yahan */
 .hero h1 span.gradient,
 .section-title h2 span.gradient,
-.industry-content h3 span.gradient,
 .section-title h1 span.gradient,
+.industry-content h3 span.gradient,
 .about-content h1 span.gradient,
 .features-section h2 span.gradient {
-    background: var(--grad-text);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
     font-size: 0.8em;
 }
 
@@ -1005,8 +1012,9 @@ footer::before {
     gap: 30px;
 }
 
+/* FIX: extra '}}' hata + 135deg → to bottom */
 .competency-box {
-    background: linear-gradient(135deg, #770A09 0%, #B02A28 100%);
+    background: linear-gradient(to bottom, #770A09 0%, #B02A28 100%);
     color: #fff;
     padding: 22px;
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1015,7 +1023,7 @@ footer::before {
     flex-shrink: 0;
     width: 180px;
     text-align: center;
-}}
+}
 
 .competency-box h4 { margin: 0; font-size: 1.1rem; line-height: 1.4; }
 
@@ -1069,13 +1077,8 @@ footer::before {
     letter-spacing: -0.02em;
 }
 
+/* cv-red ab Section 2A utility se gradient leta hai */
 .cv-header h2 .cv-gray { color: var(--text-muted); }
-.cv-header h2 .cv-red {
-    background: var(--grad-text);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 .cv-header p {
     text-align: center;
@@ -1107,7 +1110,6 @@ footer::before {
     box-shadow: var(--shadow-md);
 }
 
-/* Top Border Glow */
 .value-card::after {
     content: '';
     position: absolute;
@@ -1157,12 +1159,7 @@ footer::before {
 
 .why-choose .section-title { color: var(--text-muted); }
 
-.why-choose .section-title span.gradient {
-    background: var(--grad-text);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+/* (span.gradient ki gradient styling Section 2A utility se — duplicate hata) */
 
 .why-grid {
     display: grid;
@@ -1357,10 +1354,14 @@ footer::before {
     animation: pulse 2s ease-in-out infinite;
 }
 
+/* FIX: solid color → gradient (pehle manga hua update) */
 .pipingleb-content h2 {
     font-size: 3rem;
     font-weight: 800;
-    color: var(--primary);
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 24px;
     letter-spacing: -0.02em;
 }
@@ -1519,12 +1520,7 @@ footer::before {
     letter-spacing: -0.02em;
 }
 
-.gradient-text {
-    background: var(--grad-text);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+/* (.gradient-text ab Section 2A utility se — duplicate hata) */
 
 .timeline {
     position: relative;
@@ -1804,21 +1800,14 @@ footer::before {
 .info-card         { grid-area: info; }
 .social-card       { grid-area: social; }
 
+/* FIX: duplicate rule merge — ek hi clean rule */
 .contact-image-box {
     width: 100%;
     height: 700px;
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-}
-
-.contact-image-box {
-    width: 100%;
-    height: 700px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    background: #f1f5f9;
+    background: var(--bg-soft);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2077,7 +2066,7 @@ footer::before {
     50% { opacity: 1; transform: scale(1.2); }
 }
 
-/* Scroll Reveal Animations (JS adds .reveal class) */
+/* Scroll Reveal (JS adds .reveal class) */
 .reveal {
     opacity: 0;
     transform: translateY(36px);
@@ -2090,7 +2079,6 @@ footer::before {
     transform: translateY(0);
 }
 
-/* Accessibility: Motion disable karne walo ke liye */
 @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
     .hero-bg-slider .slide.active { animation: none; }
@@ -2109,6 +2097,7 @@ footer::before {
 }
 
 @media (max-width: 768px) {
+    /* Navbar Mobile */
     .nav-links {
         position: absolute;
         top: 80px;
@@ -2202,7 +2191,7 @@ footer::before {
 
     .pipingleb-content h2 { font-size: 2.2rem; }
 
-    /* Contact (UPDATED ⭐) */
+    /* Contact (Grid areas ke saath stack order) */
     .contact-grid {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -2212,6 +2201,7 @@ footer::before {
             "social";
         gap: 24px;
     }
+
     .contact-form { height: auto; }
     .contact-form form { overflow-y: visible; }
     .contact-image-box { height: 300px; }
@@ -2231,14 +2221,10 @@ footer::before {
 
 /* ============================================
    10. SECTION SPACING NORMALIZER
-   (Sab gaps EK Jaise kar dega)
+   (Sab sections ke beech EK jaisa gap)
    ============================================ */
 
-:root {
-    --section-space: 64px;   /* ⭐ Ek jagah change = sab jagah change */
-}
-
-/* --- Har section: SAME top & bottom spacing --- */
+/* A. Sections — uniform top & bottom */
 .industries,
 .features,
 .features-section,
@@ -2247,15 +2233,14 @@ footer::before {
 .cta-about-section,
 .journey-section,
 .capabilities-clean-section,
-.tags-container,
-.cta-section {
+.tags-container {
     padding-top: var(--section-space);
     padding-bottom: var(--section-space);
     margin-top: 0;
     margin-bottom: 0;
 }
 
-/* --- Page containers (about, labs, contact) --- */
+/* B. Page containers */
 .about-container,
 .Labs-container,
 .contact-container {
@@ -2263,47 +2248,25 @@ footer::before {
     padding-bottom: var(--section-space);
 }
 
-/* --- Hero bottom bhi match kare --- */
-.hero-bottom-wrapper { padding-bottom: var(--section-space); }
+/* C. Hero bottom bhi match kare */
+.hero-bottom-wrapper {
+    padding-top: var(--section-space);
+    padding-bottom: var(--section-space);
+}
 
-/* --- PipingLab: margin hatao, container padding already hai --- */
+/* D. PipingLab — margin ki jagah spacing */
 .pipingleb-section {
     margin-top: 0;
     margin-bottom: var(--section-space);
 }
 
-/* --- Mobile par kam spacing --- */
+/* E. CTA card */
+.cta-section {
+    margin-top: 0;
+    margin-bottom: var(--section-space);
+}
+
+/* F. Mobile — kam spacing */
 @media (max-width: 768px) {
     :root { --section-space: 40px; }
-}
-
-/* ============================================
-   UNIVERSAL GRADIENT TEXT (File ke end mein)
-   ============================================ */
-.gradient-text,
-.section-header h2 span.gradient,
-.section-header h2 .gradient-text,
-.cap-header h2 span.gradient,
-.cap-header h2 .gradient-text,
-.cta-section h2 span.gradient,
-.big-text span.gradient {
-    background: var(--grad-text);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* ============================================
-   SECTION TITLE CENTER FIX
-   ============================================ */
-.section-title {
-    text-align: center !important;
-    width: 100% !important;
-    display: block !important;
-}
-
-.section-title h1,
-.section-title h2,
-.section-title p {
-    text-align: center !important;
 }
