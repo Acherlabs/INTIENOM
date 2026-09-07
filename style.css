@@ -2230,6 +2230,54 @@ footer::before {
 }
 
 /* ============================================
+   10. SECTION SPACING NORMALIZER
+   (Sab gaps EK Jaise kar dega)
+   ============================================ */
+
+:root {
+    --section-space: 64px;   /* ⭐ Ek jagah change = sab jagah change */
+}
+
+/* --- Har section: SAME top & bottom spacing --- */
+.industries,
+.features,
+.features-section,
+.core-values-section,
+.why-choose,
+.cta-about-section,
+.journey-section,
+.capabilities-clean-section,
+.tags-container,
+.cta-section {
+    padding-top: var(--section-space);
+    padding-bottom: var(--section-space);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* --- Page containers (about, labs, contact) --- */
+.about-container,
+.Labs-container,
+.contact-container {
+    padding-top: var(--section-space);
+    padding-bottom: var(--section-space);
+}
+
+/* --- Hero bottom bhi match kare --- */
+.hero-bottom-wrapper { padding-bottom: var(--section-space); }
+
+/* --- PipingLab: margin hatao, container padding already hai --- */
+.pipingleb-section {
+    margin-top: 0;
+    margin-bottom: var(--section-space);
+}
+
+/* --- Mobile par kam spacing --- */
+@media (max-width: 768px) {
+    :root { --section-space: 40px; }
+}
+
+/* ============================================
    UNIVERSAL GRADIENT TEXT (File ke end mein)
    ============================================ */
 .gradient-text,
