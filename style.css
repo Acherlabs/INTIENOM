@@ -1385,7 +1385,7 @@ footer::before {
 .pipingleb-image img {
     width: 100%;
     height: auto;
-    max-height: 500px;
+    max-height: 536px;
     object-fit: contain;
     border-radius: 16px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
@@ -1393,12 +1393,10 @@ footer::before {
 
 .pipingleb-stats {
     position: relative;
-    margin-top: -40px;
+    margin-top: 24px;
     margin-bottom: 20px;
     justify-content: center;
     width: 100%;
-    background: var(--bg);
-    padding-top: 10px;
     display: flex;
     gap: 16px;
     z-index: 10;
