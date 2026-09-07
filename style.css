@@ -1792,20 +1792,44 @@ footer::before {
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    grid-template-areas:
+        "form image"
+        "info  social";
+    gap: 32px 48px;
+    align-items: start;
+}
+
+.contact-form      { grid-area: form; }
+.contact-image-box { grid-area: image; }
+.info-card         { grid-area: info; }
+.social-card       { grid-area: social; }
+
+.contact-image-box {
+    width: 100%;
+    height: 700px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
 }
 
 .contact-image-box {
     width: 100%;
-    margin-bottom: 30px;
-    text-align: center;
+    height: 700px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contact-image-box img {
-    max-width: 100%;
-    height: auto;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
 }
 
 .contact-form {
@@ -1889,13 +1913,6 @@ footer::before {
     text-align: center;
     font-size: 0.9rem;
     color: #22c55e;
-}
-
-/* Contact Info Cards */
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
 }
 
 .info-card,
@@ -2092,7 +2109,6 @@ footer::before {
 }
 
 @media (max-width: 768px) {
-    /* Navbar Mobile */
     .nav-links {
         position: absolute;
         top: 80px;
@@ -2186,10 +2202,19 @@ footer::before {
 
     .pipingleb-content h2 { font-size: 2.2rem; }
 
-    /* Contact */
-    .contact-grid { grid-template-columns: 1fr; }
+    /* Contact (UPDATED ⭐) */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "form"
+            "image"
+            "info"
+            "social";
+        gap: 24px;
+    }
     .contact-form { height: auto; }
     .contact-form form { overflow-y: visible; }
+    .contact-image-box { height: 300px; }
 
     /* Footer */
     .footer-grid { grid-template-columns: repeat(2, 1fr); }
