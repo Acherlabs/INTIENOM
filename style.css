@@ -1375,23 +1375,20 @@ footer::before {
 
 .pipingleb-image {
     position: relative;
-    width: 100%;
-    height: 560px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    background: var(--bg-soft);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 400px;
 }
 
 .pipingleb-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 500px;
     object-fit: contain;
-    object-position: center;
-    display: block;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
 }
 
 .pipingleb-stats {
@@ -2188,11 +2185,19 @@ footer::before {
     .about-image { order: -1; }
     .about-image img { height: 300px; }
 
+    @media (max-width: 768px) {
+    ...
     /* Labs */
     .pipingleb-content {
         grid-template-columns: 1fr;
         padding: 20px;
     }
+
+    .pipingleb-image { height: 350px; }
+
+    .pipingleb-content h2 { font-size: 2.2rem; }
+    ...
+}
 
     .pipingleb-content h2 { font-size: 2.2rem; }
 
