@@ -138,7 +138,7 @@ function initDownloadModal() {
 
     // --- Animated Open/Close ---
     function openModalAnim() {
-        modal.style.display = "block";
+        modal.style.display = "flex";
         // Thoda delay taaki CSS transition chal sake
         setTimeout(function() { modal.classList.add('open'); }, 20);
     }
